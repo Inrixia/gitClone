@@ -1,0 +1,26 @@
+{
+  "name": "gitclone",
+  "version": "1.0.0",
+  "description": "Clone all github repos assosiated with an account",
+  "main": "index.ts",
+  "scripts": {
+    "test": "tsc && node ./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Inrixia/gitClone.git"
+  },
+  "author": "Inrixia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Inrixia/gitClone/issues"
+  },
+  "homepage": "https://github.com/Inrixia/gitClone#readme",
+  "devDependencies": {
+    "@octokit/core": "^3.5.1",
+    "@types/node": "^16.9.1",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "eslint": "^7.32.0"
+  }
+}
