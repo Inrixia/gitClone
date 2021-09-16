@@ -33,14 +33,21 @@ const wrappedSpawn = async (command: string, args: string[], cwd: string) =>
 
 const excludeOwners = ["BBTTT-Studios", "github"];
 const excludeRepos = ["DefinitelyTyped"];
+
+const reposToMirror: Record<string, any> = {};
+
 (async () => {
 	await rm(`${path}`, { recursive: true }).catch(() => null);
-	let data = [];
-	let page = 0;
-	while (data.length !== 0 || page < 1) {
-		for (const repo of (await octokit.request("GET /user/repos", { per_page: 100, page: page++ })).data) {
-			if (excludeOwners.includes(repo.owner.login) || excludeRepos.includes(repo.name)) continue;
-			gitClone(repo);
+	for (const organization of (await octokit.request("GET /user/orgs", { per_page: 1000 })).data) {
+		for (const repo of (await octokit.request(`GET /orgs/${organization.login}/repos`, { per_page: 1000 })).data) {
+			reposToMirror[repo.id] = repo;
 		}
+	}
+	for (const repo of (await octokit.request("GET /user/repos", { per_page: 1000 })).data) {
+		reposToMirror[repo.id] = repo;
+	}
+	for (const repo of Object.values(reposToMirror)) {
+		if (excludeOwners.includes(repo.owner.login) || excludeRepos.includes(repo.name)) continue;
+		gitClone(repo);
 	}
 })();
