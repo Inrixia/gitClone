@@ -7,7 +7,7 @@
 		"url": "git+https://github.com/Inrixia/gitClone.git"
 	},
 	"scripts": {
-		"build": "tsc && pkg ./dist/serial.js --out-path=./build -t latest-linux,latest-mac,latest-win --compress GZip"
+		"build": "tsc && pkg ./dist/clone.js --out-path=./build -t latest-linux,latest-mac,latest-win --compress GZip"
 	},
 	"author": "Inrixia",
 	"license": "ISC",

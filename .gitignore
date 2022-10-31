@@ -1,2 +1,4 @@
 node_modules/
-repositories/
+repos/
+dist/
+build/

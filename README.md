@@ -1,4 +1,6 @@
 ## GitClone
 
 This is a simple repo for cloning all git repositories a user has access to.
-`ts-node index.ts token username`
+
+Example:
+`clone-win.exe --token yourgithubtoken`
